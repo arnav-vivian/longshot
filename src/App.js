@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home"
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+
+      </Routes>
+    </BrowserRouter>
   );
 }
-
 export default App;
+
+// // export default App;
+// import Table from "./components/Table";
+// import data from "./assets/Data.json";
+// import Home from "./pages/Home";
+// function App() {
+//   const getHeadings = () => {
+//     return Object.keys(data[0]);
+//   }
+
+//   return (
+//     <>
+
+//       <div className="container">
+//         <Table theadData={getHeadings()} tbodyData={data} />
+//       </div>
+
+//     </>
+//   );
+// }
+// export default App;
