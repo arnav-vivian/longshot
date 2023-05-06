@@ -445,7 +445,6 @@ export default function Col() {
                                     <h2 class="  font-medium">Intent</h2>
                                     <div className=" text-md font-medium bg-yellow-400 rounded-3xl px-3 w-32 hover:text-orange-500  hover:bg-yellow-600" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{intentInfo?.type}</div>
 
-                                    <div className=" text-md font-medium bg-yellow-400 rounded-3xl px-3 w-32 hover:text-pink-500  hover:bg-yellow-600" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{intentInfo?.type}</div>
                                     {isHovering && (
                                         <div className=" bg-white w-92 h-16 z-10" >
                                             <span className="  flex justify-center items-center">{intentInfo['hover-text']}</span>
