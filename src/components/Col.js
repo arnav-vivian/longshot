@@ -333,7 +333,6 @@ export default function Col() {
     }
 
 
-    const [show, setShow] = useState(0);
     const [state, setState] = useState('broadmatch');
     const [selectedRow, setSelectedRow] = useState(['shopping in barcelona', '480', '0', '0.24', '0.12', '313000000', '0.21,0.21,0.21,0.14,0.21,0.39,0.59,0.48,1.00,0.88,0.88,0.59', '46']);
     var p1 = p.raw_broadmatch_data;
@@ -345,7 +344,7 @@ export default function Col() {
     function handleChange(e, param1) {
         setChecked(e.target.checked);
         // console.log(param1)
-        setSelectedRow(param1)
+        //setSelectedRow(param1)
         //console.log("ssad")
         console.log(selectedRow)
     }
@@ -379,7 +378,6 @@ export default function Col() {
 
     // console.log(p1[0])
 
-    const intentInfo = getIntentInfo(selectedRow[2]);
     //console.log(intentInfo.type); // Output: "Commercial"
     // console.log(intentInfo['hover-text']); // Output: "The user wants to investigate brands or services."
     //const bg = intentInfo.color.bg; // Output: "#FCE081"
@@ -404,6 +402,13 @@ export default function Col() {
             },
         ],
     };
+
+    const intentInfo = getIntentInfo(selectedRow[2]);
+
+    // const [show, setShow] = useState(false);
+    // if (intentInfo.type === "Informational") {
+    //     setShow(true);
+    // }
     const vol = selectedRow[5] / 1000000;
     return (
         <div className="flex flex-col">
@@ -439,7 +444,8 @@ export default function Col() {
                                 <div class="flex-col items-center mb-3">
                                     <h2 class="  font-medium">Intent</h2>
                                     <div className=" text-md font-medium bg-yellow-400 rounded-3xl px-3 w-32 hover:text-orange-500  hover:bg-yellow-600" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{intentInfo?.type}</div>
-                                    <div className=" text-md font-medium bg-yellow-400 rounded-3xl px-3 w-32 hover:text-orange-500  hover:bg-yellow-600" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{intentInfo?.type}</div>
+
+                                    <div className=" text-md font-medium bg-yellow-400 rounded-3xl px-3 w-32 hover:text-pink-500  hover:bg-yellow-600" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{intentInfo?.type}</div>
                                     {isHovering && (
                                         <div className=" bg-white w-92 h-16 z-10" >
                                             <span className="  flex justify-center items-center">{intentInfo['hover-text']}</span>
