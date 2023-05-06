@@ -1,48 +1,97 @@
 import React from 'react'
 
+import { FaFlagUsa } from 'react-icons/fa'
+
 const Card = () => {
     return (
-        <div>
-            <a
-                class=" w-96 relative flex items-start justify-between rounded-xl border border-gray-100 p-4 shadow-xl sm:p-6 lg:p-8 "
-                href="#"
-            >
-                <div class="pt-4 text-gray-500">
-                    <svg
-                        class="h-8 w-8 sm:h-10 sm:w-10"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
-                        ></path>
-                    </svg>
+        <div class="flex flex-wrap justify-center mt-10">
 
-                    <h3 class="mt-4 text-lg font-bold text-gray-900 sm:text-xl">
-                        Science of Chemistry
-                    </h3>
+            <div class="p-4 max-w-sm">
+                <div class="flex rounded-lg h-full bg-teal-400 p-8 flex-col">
+                    <div class="flex-col items-center mb-3">
+                        <h2 class="text-white text-lg font-medium">volume</h2>
+                        <h2 class="text-white text-lg font-medium">480  </h2>
+                    </div>
 
-                    <p class="mt-2 hidden text-sm sm:block">
-                        You can manage phone, email and chat conversations all from a single
-                        mailbox.
-                    </p>
+                    <hr class="w-full h-0.5  bg-gray-100  rounded  dark:bg-gray-700"></hr>
+                    <div class="flex flex-col justify-between flex-grow">
+                        <p>Keyword dificulty</p>
+                        <p>46%</p>
+                        <p>Possible</p>
+                        <p class="leading-relaxed text-base text-white">Slightly more competition. You'll need well-structured and unique content appropriately optimized for your keywords</p>
+
+                    </div>
                 </div>
-
-                <span
-                    class="rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600"
-                >
-                    4.3
-                </span>
-            </a>
-
-
+            </div>
         </div>
     )
 }
 
 export default Card
+
+
+// import React from 'react'
+
+// const Card = () => {
+//     return (
+//         <div class="w-full min-h-screen bg-blue-50 p-6">
+
+//             <h1 class="font-bold text-xl text-center md:text-3xl md:mt-12 mb-4">Check out the <span class="text-red-500">Features</span> of our App</h1>
+
+
+
+//             <div class="flex flex-wrap justify-center">
+
+//                 <div class="flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52">
+
+//                     <img src="images/database-icon.svg" alt="" class="h-20 m-6" />
+
+//                     <h2 class="text-center px-2 pb-5">Database Support</h2>
+
+
+
+//                 </div>
+
+
+
+//                 <div class="flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52">
+
+//                     <img src="images/email-icon.svg" alt="" class="h-20 m-6" />
+
+//                     <h2 class="text-center px-2 pb-5">Email Support</h2>
+
+
+
+//                 </div>
+
+
+
+//                 <div class="flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52">
+
+//                     <img src="images/chat-icon.svg" alt="" class="h-20 m-6" />
+
+//                     <h2 class="text-center px-2 pb-5">Chat Support</h2>
+
+
+
+//                 </div>
+
+
+
+//                 <div class="flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-52">
+
+//                     <img src="images/terminal-icon.svg" alt="" class="h-20 m-6" />
+
+//                     <h2 class="text-center px-2 pb-5">Terminal Commands</h2>
+
+
+
+//                 </div>
+
+//             </div>
+
+//         </div>
+//     )
+// }
+
+// export default Card

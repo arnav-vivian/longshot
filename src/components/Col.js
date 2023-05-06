@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 
 export default function Col() {
     const p =
@@ -228,13 +228,41 @@ export default function Col() {
     };
 
     const [color, setColor] = useState(0);
-    const p1 = p.raw_related_data;
-    console.log(p1)
+    const [state, setState] = useState('related');
+    const [selectedRow, setSelectedRow] = useState('ooo');
+    var p1 = p.raw_broadmatch_data;
+    var p2 = p.raw_question_data;
+    var p3 = p.raw_related_data;
+    const [checked, setChecked] = useState(false);
+    function handleChange(e, param1) {
+        setChecked(e.target.checked);
+        console.log(param1)
+        // setSelectedRow(param1)
+        console.log("ssad")
+    }
+    useEffect(() => {
+        console.log(selectedRow)
+    }, [selectedRow]);
+
+    // if (setColor(0)) {
+
+    // }
+    // else if (setColor(1)) {
+
+    // }
+    // if (setColor(2)) {
+
+    // }
+
+
+
+    // console.log(p1[0])
     return (
         <div className="flex flex-col">
 
-
-
+            <button onClick={() => setState('related')}>related</button>
+            <button onClick={() => setState('broadmatch')}>questions</button>
+            <button onClick={() => setState('question')}>broadmatch</button>
             <div className="overflow-x-auto">
                 <div className="p-1.5 w-full inline-block align-middle">
                     <div className="overflow-hidden border rounded-lg">
@@ -248,26 +276,12 @@ export default function Col() {
                                 {/* )}) } */}
                             </thead>
                             <tbody className="divide-y divide-gray-200">
-                                <tr><th scope="col" className="py-3 pl-4">
-                                    <div className="flex items-center h-5 w-7">
-                                        <input
-                                            id="checkbox-all"
-                                            type="checkbox"
-                                            className="text-blue-600 border-gray-200 rounded focus:ring-blue-500"
-                                        />
-                                        <label
-                                            htmlFor="checkbox"
-                                            className="sr-only"
-                                        >
-                                            Checkbox
-                                        </label>
-                                    </div>
-                                </th>
+                                <tr>
                                     <th
                                         scope="col"
                                         className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
                                     >
-                                        bristi
+                                        {p.columnNames[0]}
                                     </th>
                                     <th
                                         scope="col"
@@ -312,17 +326,67 @@ export default function Col() {
                                         {p.columnNames[7]}
                                     </th>
                                 </tr>
+
                                 <tr>
-                                    {p1.map((item) => {
+
+
+                                    {state === 'broadmatch' && p1.map((item) => {
                                         return (
                                             <tr>
+                                                <td>
+                                                    <input type="checkbox" className="text-blue-600 border-gray-200 rounded focus:ring-blue-500" />
 
-                                                {item.map((item1) => {
+
+                                                </td>
+                                                {item.map((item1, index) => {
                                                     return (
-                                                        <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
+                                                        <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap" key={index}>
                                                             {item1}
+
                                                         </td>
                                                     )
+
+                                                })}</tr>
+                                        )
+                                    })}
+                                    <p>{selectedRow}</p>
+                                    <input value="test" type="checkbox" onChange={e => handleChange(e, 'hi')} />
+
+                                    {state === 'question' && p2.map((item) => {
+                                        return (
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" onSelect={setSelectedRow('hi')} className="text-blue-600 border-gray-200 rounded focus:ring-blue-500" />
+
+
+                                                </td>
+                                                {item.map((item1, index) => {
+                                                    return (
+                                                        <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap" key={index}>
+                                                            {item1}
+
+                                                        </td>
+                                                    )
+
+                                                })}</tr>
+                                        )
+                                    })}
+                                    {state === 'related' && p3.map((item) => {
+                                        return (
+                                            <tr>
+                                                <td>
+                                                    <input value="test" type="checkbox" onChange={e => handleChange(e, item)} />
+
+
+                                                </td>
+                                                {item.map((item1, index) => {
+                                                    return (
+                                                        <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap" key={index}>
+                                                            {item1}
+
+                                                        </td>
+                                                    )
+
                                                 })}</tr>
                                         )
                                     })}
