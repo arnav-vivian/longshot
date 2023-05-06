@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"
 
 export default function Col() {
     const p =
@@ -229,17 +230,23 @@ export default function Col() {
 
     const [color, setColor] = useState(0);
     const [state, setState] = useState('related');
-    const [selectedRow, setSelectedRow] = useState('ooo');
+    const [selectedRow, setSelectedRow] = useState('');
     var p1 = p.raw_broadmatch_data;
     var p2 = p.raw_question_data;
     var p3 = p.raw_related_data;
     const [checked, setChecked] = useState(false);
     function handleChange(e, param1) {
         setChecked(e.target.checked);
-        console.log(param1)
-        // setSelectedRow(param1)
-        console.log("ssad")
+        // console.log(param1)
+        setSelectedRow(param1)
+        //console.log("ssad")
+        //console.log(selectedRow)
     }
+    const navigate = useNavigate();
+    const handlebutton = () => {
+        navigate('/drop')
+    }
+
     useEffect(() => {
         console.log(selectedRow)
     }, [selectedRow]);
@@ -258,11 +265,96 @@ export default function Col() {
 
     // console.log(p1[0])
     return (
-        <div className="flex flex-col">
 
-            <button onClick={() => setState('related')}>related</button>
-            <button onClick={() => setState('broadmatch')}>questions</button>
-            <button onClick={() => setState('question')}>broadmatch</button>
+        <div className="flex flex-col">
+            {/*} {selectedRow.map((curr) => {
+                 <p>
+                     {curr}
+                </p>
+         }
+
+
+            )}
+        */}
+
+            <div className="flex justify-center">
+                <div class="flex flex-wrap justify-center mt-10">
+
+                    <div class="p-4 w-96 h-96">
+                        <div class="flex rounded-lg h-full bg-teal-200 p-8 flex-col">
+                            <div class="flex-col items-center mb-3">
+                                <h2 class="text-white text-lg font-medium">volume</h2>
+                                <h2 class="text-white text-lg font-medium">{setSelectedRow[0]} </h2>
+                            </div>
+
+                            <hr class="w-full h-0.5  bg-gray-100  rounded  dark:bg-gray-700"></hr>
+                            <div class="flex flex-col justify-between flex-grow">
+                                <p>Keyword dificulty</p>
+                                <p>46%</p>
+                                <p>Possible</p>
+                                <p class="leading-relaxed text-base text-white">Slightly more competition. You'll need well-structured and unique content appropriately optimized for your keywords</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="flex-col">
+                    <div class="flex flex-wrap justify-center mt-2 ">
+
+                        <div class="p-4 w-96 h-32">
+                            <div class="flex rounded-lg h-full bg-slate-100 p-8 flex-col">
+                                <div class="flex-col items-center mb-3">
+                                    <h2 class=" text-lg font-medium">Intent</h2>
+                                    <h2 class=" text-md font-medium">Commercial  </h2>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap justify-center mt-10">
+
+                        <div class="p-4 w-96 h-32">
+                            <div class="flex rounded-lg h-full bg-slate-100 p-8 flex-col">
+                                <div class="flex-col items-center mb-3">
+                                    <h2 class=" text-lg font-medium">Results</h2>
+                                    <h2 class=" text-lg font-medium">480  </h2>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap justify-center mt-10">
+
+                        <div class="p-4 w-96 h-32">
+                            <div class="flex rounded-lg h-full bg-slate-100 p-8 flex-col">
+                                <div class="flex-col items-center mb-3">
+                                    <div className="flex justify-around">
+                                        <div className="flex flex-col">
+                                            <h2 class="text-lg font-medium">CPC</h2>
+                                            <h2 class="text-lg font-medium">$12  </h2>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <h2 class=" text-lg font-medium">CPC</h2>
+                                            <h2 class=" text-lg font-medium">$12  </h2>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="flex flex-wrap text-sm font-medium text-center mx-3 text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+
+                <button class="inline-block p-4 mx-2 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500" onClick={() => setState('related')}>related</button>
+                <button class="inline-block p-4 mx-2 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500" onClick={() => setState('question')}>questions</button>
+                <button class="inline-block p-4 mx-2 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500" onClick={() => setState('broadmatch')}>broadmatch</button>
+
+                <button class="inline-block p-4 mx-2 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500" onClick={() => { handlebutton() }}>DragDrop</button>
+            </div>
+
             <div className="overflow-x-auto">
                 <div className="p-1.5 w-full inline-block align-middle">
                     <div className="overflow-hidden border rounded-lg">
@@ -334,7 +426,7 @@ export default function Col() {
                                         return (
                                             <tr>
                                                 <td>
-                                                    <input type="checkbox" className="text-blue-600 border-gray-200 rounded focus:ring-blue-500" />
+                                                    <input value="test" type="radio" name="relate" onChange={e => handleChange(e, item)} />
 
 
                                                 </td>
@@ -349,14 +441,14 @@ export default function Col() {
                                                 })}</tr>
                                         )
                                     })}
-                                    <p>{selectedRow}</p>
-                                    <input value="test" type="checkbox" onChange={e => handleChange(e, 'hi')} />
+                                    {/*<p>{selectedRow}</p>*/}
+                                    {/*<input value="test" type="checkbox" onChange={e => handleChange(e, 'hi')} />*/}
 
                                     {state === 'question' && p2.map((item) => {
                                         return (
                                             <tr>
                                                 <td>
-                                                    <input type="checkbox" onSelect={setSelectedRow('hi')} className="text-blue-600 border-gray-200 rounded focus:ring-blue-500" />
+                                                    <input value="test" type="radio" name="relate" onChange={e => handleChange(e, item)} />
 
 
                                                 </td>
@@ -375,7 +467,7 @@ export default function Col() {
                                         return (
                                             <tr>
                                                 <td>
-                                                    <input value="test" type="checkbox" onChange={e => handleChange(e, item)} />
+                                                    <input value="test" type="radio" name="relate" onChange={e => handleChange(e, item)} />
 
 
                                                 </td>
