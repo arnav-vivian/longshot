@@ -239,6 +239,17 @@ export default function Col() {
         "created_date": "2022-11-19T05:39:27.001544"
     };
 
+    const [isHovering, setIsHovering] = useState(false);
+
+    const handleMouseEnter = () => {
+        setIsHovering(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovering(false);
+    };
+
+
     function getIntentInfo(intentType) {
         const intentMap = {
             0: {
@@ -425,7 +436,15 @@ export default function Col() {
                             <div class="flex rounded-lg h-full bg-slate-100 p-8 flex-col">
                                 <div class="flex-col items-center mb-3">
                                     <h2 class=" text-lg font-medium">Intent</h2>
-                                    <h2 class=" text-md font-medium bg-{bg}"></h2>
+                                    <div class=" text-md font-medium " onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>hdnewfneifi</div>
+                                    {isHovering && (
+                                        <div>
+
+                                            <span className=" bg-slate-200 flex justify-center items-center h-28 z-20 shadow-md"> hogaya</span>
+                                            <span className=" inset-0 flex justify-center items-center"> hogaya</span>
+                                            <span className=" inset-0 flex justify-center items-center"> hogaya</span>
+                                        </div>
+                                    )}
                                 </div>
 
 
