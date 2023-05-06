@@ -371,9 +371,9 @@ export default function Col() {
 
     // console.log(p1[0])
 
-    // const intentInfo = getIntentInfo(selectedRow[2]);
-    // const type = (intentInfo.type); // Output: "Commercial"
-    // console.log(intentInfo['hover-text']); // Output: "The user wants to investigate brands or services."
+    const intentInfo = getIntentInfo(selectedRow[2]);
+    const type = (intentInfo.type); // Output: "Commercial"
+    console.log(intentInfo['hover-text']); // Output: "The user wants to investigate brands or services."
     // const bg = intentInfo.color.bg; // Output: "#FCE081"
     // const yur = keywordDifficulty(selectedRow[7]).rating;
 
@@ -403,11 +403,11 @@ export default function Col() {
             <div className="flex justify-center  ">
                 <div class="flex flex-wrap justify-center mt-10">
 
-                    <div class="p-4 w-96 h-96 mr-8">
-                        <div class="flex rounded-lg h-full bg-teal-200 p-8 flex-col">
+                    <div class="p-4 w-96 h-[140] mr-8">
+                        <div class="flex rounded-lg h-full bg-slate-200 p-8 flex-col">
                             <div class="flex-col items-center mb-3">
-                                <h2 class="text-white text-lg font-medium">volume</h2>
-                                <h2 class="text-white text-lg font-medium">{selectedRow[1]} </h2>
+                                <h2 class=" text-lg font-medium">volume</h2>
+                                <h2 class=" text-lg font-medium">{selectedRow[1]} </h2>
                             </div>
 
                             <hr class="w-full h-0.5  bg-gray-100  rounded  dark:bg-gray-700"></hr>
@@ -422,7 +422,7 @@ export default function Col() {
                                 <p> {keywordDifficulty(selectedRow[7]).rating}</p>
 
 
-                                <p class="leading-relaxed text-base text-white">{keywordDifficulty(selectedRow[7]).text}</p>
+                                <p class="leading-relaxed    text-xs">{keywordDifficulty(selectedRow[7]).text}</p>
 
                             </div>
                         </div>
@@ -436,13 +436,12 @@ export default function Col() {
                             <div class="flex rounded-lg h-full bg-slate-100 p-8 flex-col">
                                 <div class="flex-col items-center mb-3">
                                     <h2 class=" text-lg font-medium">Intent</h2>
-                                    <div class=" text-md font-medium " onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>hdnewfneifi</div>
+                                    <div class=" text-md font-medium bg-yellow-300 rounded-3xl px-3 w-32 " onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{intentInfo.type}</div>
                                     {isHovering && (
-                                        <div>
+                                        <div className=" bg-slate-200 w-96 h-28 z-10 shadow-md" >
 
-                                            <span className=" bg-slate-200 flex justify-center items-center h-28 z-20 shadow-md"> hogaya</span>
-                                            <span className=" inset-0 flex justify-center items-center"> hogaya</span>
-                                            <span className=" inset-0 flex justify-center items-center"> hogaya</span>
+                                            <span className="  flex justify-center items-center ">{intentInfo['hover-text']}</span>
+
                                         </div>
                                     )}
                                 </div>
@@ -454,7 +453,7 @@ export default function Col() {
                     <div class="flex flex-wrap justify-center mt-10">
 
                         <div class="p-4 w-96 h-32">
-                            <div class="flex rounded-lg h-full bg-slate-100 p-8 flex-col">
+                            <div class="flex rounded-lg h-full bg-slate-100 p-8 flex-col -z-10">
                                 <div class="flex-col items-center mb-3">
                                     <h2 class=" text-lg font-medium">Results</h2>
                                     <h2 class=" text-lg font-medium">{vol} M</h2>
@@ -514,7 +513,7 @@ export default function Col() {
                                     {state === 'broadmatch' && p1.map((item) => {
                                         return (
                                             <tr>
-                                                <td>
+                                                <td className="pl-3">
                                                     <input value="test" type="radio" name="relate" onChange={e => handleChange(e, item)} />
 
 
@@ -536,7 +535,7 @@ export default function Col() {
                                     {state === 'question' && p2.map((item) => {
                                         return (
                                             <tr>
-                                                <td>
+                                                <td className="pl-3">
                                                     <input value="test" type="radio" name="relate" onChange={e => handleChange(e, item)} />
 
 
@@ -555,7 +554,7 @@ export default function Col() {
                                     {state === 'related' && p3.map((item) => {
                                         return (
                                             <tr>
-                                                <td>
+                                                <td className="pl-3">
                                                     <input value="test" type="radio" name="relate" onChange={e => handleChange(e, item)} />
 
 
