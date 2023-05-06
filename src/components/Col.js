@@ -196,7 +196,7 @@ export default function Col() {
             [
                 "cheap things in barcelona",
                 "33100",
-                "8",
+                "1",
                 "0.27",
                 "0.16",
                 "2080000000",
@@ -372,10 +372,11 @@ export default function Col() {
     // console.log(p1[0])
 
     const intentInfo = getIntentInfo(selectedRow[2]);
-    //const type = (intentInfo.type); // Output: "Commercial"
-    //console.log(intentInfo['hover-text']); // Output: "The user wants to investigate brands or services."
-    // const bg = intentInfo.color.bg; // Output: "#FCE081"
+    //console.log(intentInfo.type); // Output: "Commercial"
+    // console.log(intentInfo['hover-text']); // Output: "The user wants to investigate brands or services."
+    //const bg = intentInfo.color.bg; // Output: "#FCE081"
     // const yur = keywordDifficulty(selectedRow[7]).rating;
+
 
     const rating = selectedRow[7];
     console.log(rating);
@@ -400,28 +401,22 @@ export default function Col() {
         <div className="flex flex-col">
 
             <div className="flex justify-center  ">
-                <div class="flex flex-wrap justify-center mt-10">
+                <div class="flex flex-wrap justify-center">
 
-                    <div class="p-4 w-96 h-[140] mr-8">
-                        <div class="flex rounded-lg h-full bg-slate-200 p-8 flex-col">
+                    <div class="p-4 w-96 h-[140] mr-8 bg-white">
+                        <div class="flex rounded-lg h-full p-2 flex-col">
                             <div class="flex-col items-center mb-3">
-                                <h2 class=" text-lg font-medium">volume</h2>
-                                <h2 class=" text-lg font-extrabold">{selectedRow[1]} </h2>
+                                <h2 class=" text-[12px] font-medium ">Volume</h2>
+                                <h2 class=" text-lg font-extrabold">{selectedRow[1]}</h2>
                             </div>
+                            <hr class="w-full h-0.5  bg-slate-100 border-0 rounded md:my-2"></hr>
+                            <div class="flex flex-col">
+                                <p className="text-[12px] font-medium mt-2">Keyword dificulty</p>
+                                <p className="font-extrabold text-[18px] mt-2">{selectedRow[7]}%</p>
+                                <p className="font-medium text-[14px] mt-2"> {keywordDifficulty(selectedRow[7]).rating}</p>
+                                <div className="my-3"><Doughnut data={data} options={options} /></div>
 
-                            <hr class="w-full h-0.5  bg-gray-100  rounded  dark:bg-gray-700"></hr>
-                            <div class="flex flex-col justify-between flex-grow">
-                                <p>Keyword dificulty</p>
-                                <p className="font-extrabold">{selectedRow[7]}%</p>
-                                <p className="font-extrabold"> {keywordDifficulty(selectedRow[7]).rating}</p>
-                                <div>
-
-                                    <Doughnut data={data} options={options} />
-                                </div>
-
-
-
-                                <p class="leading-relaxed    text-xs">{keywordDifficulty(selectedRow[7]).text}</p>
+                                <p class="leading-relaxed text-xs mt-4">{keywordDifficulty(selectedRow[7]).text}</p>
 
                             </div>
                         </div>
@@ -431,49 +426,45 @@ export default function Col() {
                     <div class="flex flex-wrap justify-center mt-2 Class
                     border-solid ">
 
-                        <div class="p-4 w-96 h-32">
-                            <div class="flex rounded-lg h-full bg-slate-100 p-8 flex-col">
+                        <div class=" w-96 h-32">
+                            <div class="flex rounded-lg h-full bg-white p-4 flex-col">
                                 <div class="flex-col items-center mb-3">
-                                    <h2 class=" text-lg font-medium">Intent</h2>
+                                    <h2 class="  font-medium">Intent</h2>
                                     <div className=" text-md font-medium bg-yellow-400 rounded-3xl px-3 w-32 hover:text-orange-500  hover:bg-yellow-600" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{intentInfo?.type}</div>
                                     {isHovering && (
-                                        <div className=" bg-slate-200 w-96 h-28 z-10 shadow-md" >
-
+                                        <div className=" bg-white w-92 h-16 z-10" >
                                             <span className="  flex justify-center items-center">{intentInfo['hover-text']}</span>
-
                                         </div>
                                     )}
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-wrap justify-center mt-10">
+                    <div class="flex flex-wrap justify-center mt-6">
 
-                        <div class="p-4 w-96 h-32">
-                            <div class="flex rounded-lg h-full bg-slate-100 p-8 flex-col -z-10">
+                        <div class=" w-96 h-32">
+                            <div class="flex rounded-lg h-full bg-white p-4 flex-col -z-10">
                                 <div class="flex-col items-center mb-3">
-                                    <h2 class=" text-lg font-medium">Results</h2>
-                                    <h2 class=" text-lg  font-extrabold">{vol} M</h2>
+                                    <h2 class=" text-[16px] font-medium">Results</h2>
+                                    <h2 class=" text-[32px]  font-bold">{vol} M</h2>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-wrap justify-center mt-10">
+                    <div class="flex flex-wrap justify-center mt-6">
 
-                        <div class="p-4 w-96 h-32">
-                            <div class="flex rounded-lg h-full bg-slate-100 p-8 flex-col">
-                                <div class="flex-col items-center mb-3">
-                                    <div className="flex justify-around">
+                        <div class=" w-96 h-32">
+                            <div class="flex rounded-lg h-full bg-white p-4 flex-col">
+                                <div class="flex-col items-center">
+                                    <div className="flex justify-around  items-center">
                                         <div className="flex flex-col">
-                                            <h2 class="text-lg font-medium">CPC</h2>
-                                            <h2 class="text-lg font-extrabold">{selectedRow[3]}  </h2>
+                                            <h2 class="text-md font-medium">CPC</h2>
+                                            <h2 class="text-[28px] font-extrabold">${selectedRow[3]}  </h2>
                                         </div>
                                         <div className="flex flex-col">
-                                            <h2 class=" text-lg font-medium">Com.</h2>
-                                            <h2 class=" text-lg font-extrabold">{selectedRow[4]}  </h2>
+                                            <h2 class=" text-md font-medium">Com.</h2>
+                                            <h2 class=" text-[28px] font-extrabold">{selectedRow[4]}  </h2>
                                         </div>
                                     </div>
                                 </div>
@@ -483,95 +474,128 @@ export default function Col() {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-wrap text-sm font-medium text-center mx-3 text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+            <div className="flex flex-wrap justify-start font-medium text-center mx-3 text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+                <div>
+                    <button class="inline-block p-2 text-[12px] m-2 text-black bg-gray-100 rounded-lg active" onClick={() => setState('related')}>related</button>
+                    <button class="inline-block p-2 text-[12px] m-2 text-black bg-gray-100 rounded-lg active" onClick={() => setState('question')}>questions</button>
+                    <button class="inline-block p-2 text-[12px] m-2 text-black bg-gray-100 rounded-lg active" onClick={() => setState('broadmatch')}>broadmatch</button>
 
-                <button class="inline-block p-4 mx-2 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500" onClick={() => setState('related')}>related</button>
-                <button class="inline-block p-4 mx-2 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500" onClick={() => setState('question')}>questions</button>
-                <button class="inline-block p-4 mx-2 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500" onClick={() => setState('broadmatch')}>broadmatch</button>
+                    <button class="inline-block p-2 text-[12px] m-2 text-black bg-red-400 bg-gray-100 rounded-lg active" onClick={() => { handlebutton() }}>DragDrop</button>
 
-                <button class="inline-block p-4 mx-2 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-gray-800 dark:text-blue-500" onClick={() => { handlebutton() }}>DragDrop</button>
+                </div>
             </div>
 
-            <div className="overflow-x-auto">
-                <div className="p-1.5 w-full inline-block align-middle">
-                    <div className="overflow-hidden border rounded-lg">
-                        <table className="min-w-full divide-y divide-gray-200">
-                            <thead className="bg-gray-50">
+            <div className="">
+                <div className="p-1.5 w-full inline-block align-middle ">
+                    <div className=" border rounded-lg ">
+                        <table className="min-w-full divide-y divide-gray-200 text-[10px] ">
+                            <tr className="bg-gray-50">
+                                <th scope="col"
+                                    className="px-1 py-3 text-[8px] font-extrabold text-left text-gray-500 uppercase ">Checkbox</th>
+                                <th
+                                    scope="col"
+                                    className="px-3 py-3 text-[8px] font-extrabold text-left text-gray-500 uppercase "
+                                >
+                                    {p.columnNames[0]}
+                                </th>
+                                <th
+                                    scope="col"
+                                    className="px-3 py-3 text-[8px] font-extrabold text-left text-gray-500 uppercase "
+                                >
+                                    {p.columnNames[1]}
+                                </th>
+                                <th
+                                    scope="col"
+                                    className="px-2 py-3 text-[8px] font-extrabold  text-gray-500 uppercase "
+                                >
+                                    {p.columnNames[2]}
+                                </th>
+                                <th
+                                    scope="col"
+                                    className="px-2 py-3 text-[8px] font-extrabold  text-gray-500 uppercase "
+                                >
+                                    {p.columnNames[3]}
+                                </th>
+                                <th
+                                    scope="col"
+                                    className="px-2 py-3 text-[8px] font-extrabold  text-gray-500 uppercase "
+                                >
+                                    {p.columnNames[4]}
+                                </th>
+                                <th
+                                    scope="col"
+                                    className="px-2 py-3 text-[8px] font-extrabold  text-gray-500 uppercase "
+                                >
+                                    {p.columnNames[5]}
+                                </th>
+                                <th
+                                    scope="col"
+                                    className="px-3 py-3 text-[8px] font-extrabold  text-gray-500 uppercase "
+                                >
+                                    {p.columnNames[6]}
+                                </th>
+                                <th
+                                    scope="col"
+                                    className="px-1 py-3 text-[8px] font-extrabold  text-gray-500 uppercase "
+                                >
+                                    {p.columnNames[7]}
+                                </th>
+                            </tr>
 
-                                {/* {p.map((item)=>{ console.log(item) 
-                                   return ( */}
-
-
-                                {/* )}) } */}
-                            </thead>
-                            <tbody className="divide-y divide-gray-200">
-
-                                <tr className="text-[10px]">
-
-
-                                    {state === 'broadmatch' && p1.map((item) => {
-                                        return (
-                                            <tr>
-                                                <td className="pl-3">
-                                                    <input value="test" type="radio" name="relate" onChange={e => handleChange(e, item)} />
-
+                            {state === 'broadmatch' && p1.map((item) => {
+                                return (
+                                    <tr>
+                                        <td className="pl-3">
+                                            <input value="test" type="radio" name="relate" onChange={e => handleChange(e, item)} />
+                                        </td>
+                                        {item.map((item1, index) => {
+                                            return (
+                                                <td className="px-2 py-4  text-gray-800 whitespace-nowrap" key={index}>
+                                                    {item1}
 
                                                 </td>
-                                                {item.map((item1, index) => {
-                                                    return (
-                                                        <td className="px-6 py-4  text-gray-800 whitespace-nowrap" key={index}>
-                                                            {item1}
+                                            )
+                                        })}</tr>
+                                )
+                            })}
+                            {state === 'question' && p2.map((item) => {
+                                return (
+                                    <tr>
+                                        <td className="pl-3">
+                                            <input value="test" type="radio" name="relate" onChange={e => handleChange(e, item)} />
 
-                                                        </td>
-                                                    )
 
-                                                })}</tr>
-                                        )
-                                    })}
-                                    {/*<p>{selectedRow}</p>*/}
-                                    {/*<input value="test" type="checkbox" onChange={e => handleChange(e, 'hi')} />*/}
-
-                                    {state === 'question' && p2.map((item) => {
-                                        return (
-                                            <tr>
-                                                <td className="pl-3">
-                                                    <input value="test" type="radio" name="relate" onChange={e => handleChange(e, item)} />
-
+                                        </td>
+                                        {item.map((item1, index) => {
+                                            return (
+                                                <td className="px-3 py-4   text-gray-800 whitespace-nowrap" key={index}>
+                                                    {item1}
 
                                                 </td>
-                                                {item.map((item1, index) => {
-                                                    return (
-                                                        <td className="px-6 py-4   text-gray-800 whitespace-nowrap" key={index}>
-                                                            {item1}
+                                            )
 
-                                                        </td>
-                                                    )
+                                        })}</tr>
+                                )
+                            })}
+                            {state === 'related' && p3.map((item) => {
+                                return (
+                                    <tr>
+                                        <td className="pl-3">
+                                            <input value="test" type="radio" name="relate" onChange={e => handleChange(e, item)} />
 
-                                                })}</tr>
-                                        )
-                                    })}
-                                    {state === 'related' && p3.map((item) => {
-                                        return (
-                                            <tr>
-                                                <td className="pl-3">
-                                                    <input value="test" type="radio" name="relate" onChange={e => handleChange(e, item)} />
 
+                                        </td>
+                                        {item.map((item1, index) => {
+                                            return (
+                                                <td className="px-2 py-4  text-gray-800 whitespace-nowrap" key={index}>
+                                                    {item1}
 
                                                 </td>
-                                                {item.map((item1, index) => {
-                                                    return (
-                                                        <td className="px-6 py-4  text-gray-800 whitespace-nowrap" key={index}>
-                                                            {item1}
+                                            )
 
-                                                        </td>
-                                                    )
-
-                                                })}</tr>
-                                        )
-                                    })}
-                                </tr>
-
-                            </tbody>
+                                        })}</tr>
+                                )
+                            })}
                         </table>
                     </div>
                 </div>
