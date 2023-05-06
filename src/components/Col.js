@@ -240,6 +240,7 @@ export default function Col() {
     };
 
     const [isHovering, setIsHovering] = useState(false);
+    const [color, setColor] = useState();
 
     const handleMouseEnter = () => {
         setIsHovering(true);
@@ -314,20 +315,27 @@ export default function Col() {
                     "These keywords have some competition but are still possible to rank for when you're starting out. To be able to rank for these, you'll need quality content focused on the keyword's intent.",
                 color: "#59DDAA",
             };
-        } else {
+        } else if (value >= 9) {
             return {
                 rating: "Very easy",
                 text:
                     "These are the best opportunities to start ranking new webpages on Google as soon as possible without backlinks.",
                 color: "#009F81",
             };
+        } else {
+            return {
+                rating: "",
+                text:
+                    "",
+                color: "#009F81",
+            };
         }
     }
 
 
-    const [color, setColor] = useState(0);
-    const [state, setState] = useState('related');
-    const [selectedRow, setSelectedRow] = useState('');
+    const [show, setShow] = useState(0);
+    const [state, setState] = useState('broadmatch');
+    const [selectedRow, setSelectedRow] = useState(['shopping in barcelona', '480', '0', '0.24', '0.12', '313000000', '0.21,0.21,0.21,0.14,0.21,0.39,0.59,0.48,1.00,0.88,0.88,0.59', '46']);
     var p1 = p.raw_broadmatch_data;
     var p2 = p.raw_question_data;
     var p3 = p.raw_related_data;
@@ -339,7 +347,7 @@ export default function Col() {
         // console.log(param1)
         setSelectedRow(param1)
         //console.log("ssad")
-        //console.log(selectedRow)
+        console.log(selectedRow)
     }
     const navigate = useNavigate();
     const handlebutton = () => {
@@ -431,6 +439,7 @@ export default function Col() {
                                 <div class="flex-col items-center mb-3">
                                     <h2 class="  font-medium">Intent</h2>
                                     <div className=" text-md font-medium bg-yellow-400 rounded-3xl px-3 w-32 hover:text-orange-500  hover:bg-yellow-600" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{intentInfo?.type}</div>
+                                    <div className=" text-md font-medium bg-yellow-400 rounded-3xl px-3 w-32 hover:text-orange-500  hover:bg-yellow-600" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{intentInfo?.type}</div>
                                     {isHovering && (
                                         <div className=" bg-white w-92 h-16 z-10" >
                                             <span className="  flex justify-center items-center">{intentInfo['hover-text']}</span>
@@ -480,7 +489,7 @@ export default function Col() {
                     <button class="inline-block p-2 text-[12px] m-2 text-black bg-gray-100 rounded-lg active" onClick={() => setState('question')}>questions</button>
                     <button class="inline-block p-2 text-[12px] m-2 text-black bg-gray-100 rounded-lg active" onClick={() => setState('broadmatch')}>broadmatch</button>
 
-                    <button class="inline-block p-2 text-[12px] m-2 text-black bg-red-400 bg-gray-100 rounded-lg active" onClick={() => { handlebutton() }}>DragDrop</button>
+                    <button class="inline-block p-2 text-[12px] m-2 text-black bg-red-400 rounded-lg active" onClick={() => { handlebutton() }}>DragDrop</button>
 
                 </div>
             </div>
@@ -568,7 +577,7 @@ export default function Col() {
                                         </td>
                                         {item.map((item1, index) => {
                                             return (
-                                                <td className="px-3 py-4   text-gray-800 whitespace-nowrap" key={index}>
+                                                <td className="px-3 py-4 text-gray-800 whitespace-nowrap" key={index}>
                                                     {item1}
 
                                                 </td>
