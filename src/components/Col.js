@@ -335,7 +335,7 @@ export default function Col() {
 
     const [show, setShow] = useState(0);
     const [state, setState] = useState('broadmatch');
-    const [selectedRow, setSelectedRow] = useState('');
+    const [selectedRow, setSelectedRow] = useState(['shopping in barcelona', '480', '0', '0.24', '0.12', '313000000', '0.21,0.21,0.21,0.14,0.21,0.39,0.59,0.48,1.00,0.88,0.88,0.59', '46']);
     var p1 = p.raw_broadmatch_data;
     var p2 = p.raw_question_data;
     var p3 = p.raw_related_data;
@@ -355,7 +355,7 @@ export default function Col() {
     }
 
     useEffect(() => {
-        // console.log(selectedRow[7]);
+        console.log(selectedRow);
 
         // let selRo = selectedRow[6];
         // console.log(selRo);
