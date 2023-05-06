@@ -372,8 +372,8 @@ export default function Col() {
     // console.log(p1[0])
 
     const intentInfo = getIntentInfo(selectedRow[2]);
-    const type = (intentInfo.type); // Output: "Commercial"
-    console.log(intentInfo['hover-text']); // Output: "The user wants to investigate brands or services."
+    //const type = (intentInfo.type); // Output: "Commercial"
+    //console.log(intentInfo['hover-text']); // Output: "The user wants to investigate brands or services."
     // const bg = intentInfo.color.bg; // Output: "#FCE081"
     // const yur = keywordDifficulty(selectedRow[7]).rating;
 
@@ -382,7 +382,7 @@ export default function Col() {
     const options = {
         responsive: false,
         maintainAspectRatio: false,
-        width: 10,
+        // width: 1
         height: 10,
     };
     const data = {
@@ -397,7 +397,6 @@ export default function Col() {
     };
     const vol = selectedRow[5] / 1000000;
     return (
-
         <div className="flex flex-col">
 
             <div className="flex justify-center  ">
@@ -407,19 +406,19 @@ export default function Col() {
                         <div class="flex rounded-lg h-full bg-slate-200 p-8 flex-col">
                             <div class="flex-col items-center mb-3">
                                 <h2 class=" text-lg font-medium">volume</h2>
-                                <h2 class=" text-lg font-medium">{selectedRow[1]} </h2>
+                                <h2 class=" text-lg font-extrabold">{selectedRow[1]} </h2>
                             </div>
 
                             <hr class="w-full h-0.5  bg-gray-100  rounded  dark:bg-gray-700"></hr>
                             <div class="flex flex-col justify-between flex-grow">
                                 <p>Keyword dificulty</p>
-                                <p>{selectedRow[7]}%</p>
+                                <p className="font-extrabold">{selectedRow[7]}%</p>
+                                <p className="font-extrabold"> {keywordDifficulty(selectedRow[7]).rating}</p>
                                 <div>
 
                                     <Doughnut data={data} options={options} />
                                 </div>
 
-                                <p> {keywordDifficulty(selectedRow[7]).rating}</p>
 
 
                                 <p class="leading-relaxed    text-xs">{keywordDifficulty(selectedRow[7]).text}</p>
@@ -436,11 +435,11 @@ export default function Col() {
                             <div class="flex rounded-lg h-full bg-slate-100 p-8 flex-col">
                                 <div class="flex-col items-center mb-3">
                                     <h2 class=" text-lg font-medium">Intent</h2>
-                                    <div class=" text-md font-medium bg-yellow-300 rounded-3xl px-3 w-32 " onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{intentInfo.type}</div>
+                                    <div className=" text-md font-medium bg-yellow-400 rounded-3xl px-3 w-32 hover:text-orange-500  hover:bg-yellow-600" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{intentInfo?.type}</div>
                                     {isHovering && (
                                         <div className=" bg-slate-200 w-96 h-28 z-10 shadow-md" >
 
-                                            <span className="  flex justify-center items-center ">{intentInfo['hover-text']}</span>
+                                            <span className="  flex justify-center items-center">{intentInfo['hover-text']}</span>
 
                                         </div>
                                     )}
@@ -456,7 +455,7 @@ export default function Col() {
                             <div class="flex rounded-lg h-full bg-slate-100 p-8 flex-col -z-10">
                                 <div class="flex-col items-center mb-3">
                                     <h2 class=" text-lg font-medium">Results</h2>
-                                    <h2 class=" text-lg font-medium">{vol} M</h2>
+                                    <h2 class=" text-lg  font-extrabold">{vol} M</h2>
                                 </div>
 
                             </div>
@@ -470,11 +469,11 @@ export default function Col() {
                                     <div className="flex justify-around">
                                         <div className="flex flex-col">
                                             <h2 class="text-lg font-medium">CPC</h2>
-                                            <h2 class="text-lg font-medium">{selectedRow[3]}  </h2>
+                                            <h2 class="text-lg font-extrabold">{selectedRow[3]}  </h2>
                                         </div>
                                         <div className="flex flex-col">
-                                            <h2 class=" text-lg font-medium">CPC</h2>
-                                            <h2 class=" text-lg font-medium">{selectedRow[4]}  </h2>
+                                            <h2 class=" text-lg font-medium">Com.</h2>
+                                            <h2 class=" text-lg font-extrabold">{selectedRow[4]}  </h2>
                                         </div>
                                     </div>
                                 </div>
