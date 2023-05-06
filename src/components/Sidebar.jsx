@@ -3,14 +3,14 @@ import { FaShoppingBasket } from "react-icons/fa";
 const Sidebar = () => {
     return (
         <>
-            <div class="flex flex-col h-full p-3 w-60 dark:bg-white dark:text-gray-900">
+            <div class="flex flex-col h-full p-3 w-64 dark:bg-white dark:text-gray-900">
                 <div class="space-y-3">
                     <div class="flex items-center justify-between">
                         <img src="https://uploads-ssl.webflow.com/62a1d5337c2a860b919132f8/62baeb2e2cd714a19a955183_longshot%20logo.svg" />
                     </div>
                     <div class="relative"></div>
                     <div class="flex-1">
-                        <ul class="pt-2 pb-4 space-y-1 text-sm">
+                        <ul class="pt-2 pb-4 space-y-1 text-[10px]">
                             <div className="">
                                 <li class="rounded-sm">
                                     <div
@@ -46,7 +46,7 @@ const Sidebar = () => {
 
                             </div>
                             <hr class="w-full h-0.5  my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
-                            <li class="rounded-sm">
+                            <li class="rounded-sm text-xs">
                                 <div
 
                                     class="flex items-center p-2 space-x-3 rounded-md"
@@ -140,26 +140,26 @@ const Sidebar = () => {
                         </ul>
                     </div>
                 </div>
-                <div class="flex items-center p-2 mt-12 space-x-4 justify-self-end bg-slate-200">
+                <div class="flex items-center p-2 mt-12 space-x-4 justify-self-end bg-slate-200 text-[10px] w-48">
                     <div class="flex-1">
                         <div class="">
                             <div class="flex items-center space-x-4 p-2 mb-5">
                                 <img class="h-12 rounded-full" src="http://www.gravatar.com/avatar/2acfb745ecf9d4dccb3364752d17f65f?s=260&d=mp" alt="James Bhatta" />
                                 <div>
-                                    <h4 class="font-semibold text-lg text-gray-700 capitalize font-poppins tracking-wide">Arnav Singh</h4>
-                                    <span class="text-sm tracking-wide flex items-center space-x-1">
+                                    <h4 class="font-semibold text-lg text-gray-700 capitalize font-poppins tracking-wide">Arnav     </h4>
+                                    <span class=" tracking-wide flex items-center space-x-1">
 
-                                        <span class="text-gray-600">Credits Used: 313</span>
+                                        <span class="text-gray-600 text-[8px]">Credits Used: 313</span>
                                     </span>
                                 </div>
                             </div>
                         </div>
 
 
-                        <ul class="pt-2 pb-4 space-y-1 text-sm">
+                        <ul class="pt-2 pb-4 space-y-1 text-[8px]">
                             <li className="flex p-4 bg-green-500 rounded-lg text-xl">
                                 <FaShoppingBasket />
-                                <span className="px-2 text-white">Change Plans</span>
+                                <span className="px-2 text-white text-[16px]">Change Plans</span>
                             </li>
                             <div className="">
                                 <li class="rounded-sm">
@@ -174,7 +174,7 @@ const Sidebar = () => {
                                         >
                                             <path d="M469.666,216.45,271.078,33.749a34,34,0,0,0-47.062.98L41.373,217.373,32,226.745V496H208V328h96V496H480V225.958ZM248.038,56.771c.282,0,.108.061-.013.18C247.9,56.832,247.756,56.771,248.038,56.771ZM448,464H336V328a32,32,0,0,0-32-32H208a32,32,0,0,0-32,32V464H64V240L248.038,57.356c.013-.012.014-.023.024-.035L448,240Z"></path>
                                         </svg>
-                                        <span>Dashboard</span>
+                                        <span className="text-[10px]">Dashboard</span>
                                     </div>
                                 </li>
                                 <li class="rounded-sm">
@@ -190,7 +190,7 @@ const Sidebar = () => {
                                         >
                                             <path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
                                         </svg>
-                                        <span>Recipies</span>
+                                        <span className="text-[10px]">Recipies</span>
                                     </div>
                                 </li>
                             </div>
@@ -211,7 +211,7 @@ const Sidebar = () => {
                             <path d="M440,424V88H352V13.005L88,58.522V424H16v32h86.9L352,490.358V120h56V456h88V424ZM320,453.642,120,426.056V85.478L320,51Z"></path>
                             <rect width="32" height="64" x="256" y="232"></rect>
                         </svg>
-                        <span>Collapse</span>
+                        <span className="text-[10px]">Collapse</span>
                     </div>
                 </div>
             </div>

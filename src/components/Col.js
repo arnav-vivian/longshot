@@ -1,5 +1,16 @@
 import { React, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { Doughnut } from "react-chartjs-2";
+
+
+import {
+    Chart as ChartJS,
+    ArcElement,
+    Tooltip,
+    Legend
+} from "chart.js";
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Col() {
     const p =
@@ -31,7 +42,7 @@ export default function Col() {
             [
                 "search engine",
                 "33100",
-                "8",
+                "1",
                 "0.27",
                 "0.16",
                 "2080000000",
@@ -228,12 +239,89 @@ export default function Col() {
         "created_date": "2022-11-19T05:39:27.001544"
     };
 
+    function getIntentInfo(intentType) {
+        const intentMap = {
+            0: {
+                type: "Commercial",
+                'hover-text': "The user wants to investigate brands or services.",
+                color: { bg: "#FCE081", text: "#A75800", hover: "#ffca6e" },
+            },
+            1: {
+                type: "Informational",
+                'hover-text': "The user wants to find an answer to a specific question.",
+                color: { bg: "#C4E5FE", text: "#006DCA", hover: "#61c6ff" },
+            },
+            2: {
+                type: "Navigational",
+                'hover-text': "The user wants to find a specific page or site.",
+                color: { bg: "#EDD9FF", text: "#8649E1", hover: "#c59dfa" },
+            },
+            3: {
+                type: "Transactional",
+                'hover-text': "The user wants to complete an action (conversion).",
+                color: { bg: "#9EF2C9", text: "#007C65", hover: "#11d6a6" },
+            },
+        };
+
+        return intentMap[intentType];
+    }
+
+
+    const keywordDifficulty = function (value) {
+        if (value > 85) {
+            return {
+                rating: "Very hard",
+                text:
+                    "The absolute hardest keywords to compete for, especially for a new website. These will demand a lot of on page SEO, link building, and content promotion efforts to eventually rank and acquire traffic.",
+                color: "#D1002F",
+            };
+        } else if (value >= 70) {
+            return {
+                rating: "Hard",
+                text:
+                    "Even stiffer competition. These keywords will demand more effort in terms of getting higher authority referring domains in order to rank your well-optimized and helpful content among the top pages.",
+                color: "#FF4953",
+            };
+        } else if (value >= 50) {
+            return {
+                rating: "Difficult",
+                text:
+                    "You'll need to have some backlinks in addition to your well-structured, helpful and optimized content in order to compete here.",
+                color: "#FF8C43",
+            };
+        } else if (value >= 30) {
+            return {
+                rating: "Possible",
+                text:
+                    "Slightly more competition. You'll need well-structured and unique content appropriately optimized for your keywords.",
+                color: "#FDC23C",
+            };
+        } else if (value >= 15) {
+            return {
+                rating: "Easy",
+                text:
+                    "These keywords have some competition but are still possible to rank for when you're starting out. To be able to rank for these, you'll need quality content focused on the keyword's intent.",
+                color: "#59DDAA",
+            };
+        } else {
+            return {
+                rating: "Very easy",
+                text:
+                    "These are the best opportunities to start ranking new webpages on Google as soon as possible without backlinks.",
+                color: "#009F81",
+            };
+        }
+    }
+
+
     const [color, setColor] = useState(0);
     const [state, setState] = useState('related');
     const [selectedRow, setSelectedRow] = useState('');
     var p1 = p.raw_broadmatch_data;
     var p2 = p.raw_question_data;
     var p3 = p.raw_related_data;
+    // console.log(p1);
+
     const [checked, setChecked] = useState(false);
     function handleChange(e, param1) {
         setChecked(e.target.checked);
@@ -248,7 +336,14 @@ export default function Col() {
     }
 
     useEffect(() => {
-        console.log(selectedRow)
+        // console.log(selectedRow[7]);
+
+        // let selRo = selectedRow[6];
+        // console.log(selRo);
+        // const dataArray = selRo.split(",");
+        // const firstData = dataArray.slice(0, 1);
+        //console.log(firstData);
+
     }, [selectedRow]);
 
     // if (setColor(0)) {
@@ -264,48 +359,73 @@ export default function Col() {
 
 
     // console.log(p1[0])
+
+    // const intentInfo = getIntentInfo(selectedRow[2]);
+    // const type = (intentInfo.type); // Output: "Commercial"
+    // console.log(intentInfo['hover-text']); // Output: "The user wants to investigate brands or services."
+    // const bg = intentInfo.color.bg; // Output: "#FCE081"
+    // const yur = keywordDifficulty(selectedRow[7]).rating;
+
+    const rating = selectedRow[7];
+    console.log(rating);
+    const options = {
+        responsive: false,
+        maintainAspectRatio: false,
+        width: 10,
+        height: 10,
+    };
+    const data = {
+        labels: ["Data 1", "Data 2"],
+        datasets: [
+            {
+                data: [rating, 100 - rating],
+                backgroundColor: ["##FFFF00", " #f5f5f5"],
+                hoverBackgroundColor: ["#FFFF00", "# #f5f5f5"],
+            },
+        ],
+    };
+    const vol = selectedRow[5] / 1000000;
     return (
 
         <div className="flex flex-col">
-            {/*} {selectedRow.map((curr) => {
-                 <p>
-                     {curr}
-                </p>
-         }
 
-
-            )}
-        */}
-
-            <div className="flex justify-center">
+            <div className="flex justify-center  ">
                 <div class="flex flex-wrap justify-center mt-10">
 
-                    <div class="p-4 w-96 h-96">
+                    <div class="p-4 w-96 h-96 mr-8">
                         <div class="flex rounded-lg h-full bg-teal-200 p-8 flex-col">
                             <div class="flex-col items-center mb-3">
                                 <h2 class="text-white text-lg font-medium">volume</h2>
-                                <h2 class="text-white text-lg font-medium">{setSelectedRow[0]} </h2>
+                                <h2 class="text-white text-lg font-medium">{selectedRow[1]} </h2>
                             </div>
 
                             <hr class="w-full h-0.5  bg-gray-100  rounded  dark:bg-gray-700"></hr>
                             <div class="flex flex-col justify-between flex-grow">
                                 <p>Keyword dificulty</p>
-                                <p>46%</p>
-                                <p>Possible</p>
-                                <p class="leading-relaxed text-base text-white">Slightly more competition. You'll need well-structured and unique content appropriately optimized for your keywords</p>
+                                <p>{selectedRow[7]}%</p>
+                                <div>
+
+                                    <Doughnut data={data} options={options} />
+                                </div>
+
+                                <p> {keywordDifficulty(selectedRow[7]).rating}</p>
+
+
+                                <p class="leading-relaxed text-base text-white">{keywordDifficulty(selectedRow[7]).text}</p>
 
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="flex-col">
-                    <div class="flex flex-wrap justify-center mt-2 ">
+                    <div class="flex flex-wrap justify-center mt-2 Class
+                    border-solid ">
 
                         <div class="p-4 w-96 h-32">
                             <div class="flex rounded-lg h-full bg-slate-100 p-8 flex-col">
                                 <div class="flex-col items-center mb-3">
                                     <h2 class=" text-lg font-medium">Intent</h2>
-                                    <h2 class=" text-md font-medium">Commercial  </h2>
+                                    <h2 class=" text-md font-medium bg-{bg}"></h2>
                                 </div>
 
 
@@ -318,7 +438,7 @@ export default function Col() {
                             <div class="flex rounded-lg h-full bg-slate-100 p-8 flex-col">
                                 <div class="flex-col items-center mb-3">
                                     <h2 class=" text-lg font-medium">Results</h2>
-                                    <h2 class=" text-lg font-medium">480  </h2>
+                                    <h2 class=" text-lg font-medium">{vol} M</h2>
                                 </div>
 
                             </div>
@@ -332,11 +452,11 @@ export default function Col() {
                                     <div className="flex justify-around">
                                         <div className="flex flex-col">
                                             <h2 class="text-lg font-medium">CPC</h2>
-                                            <h2 class="text-lg font-medium">$12  </h2>
+                                            <h2 class="text-lg font-medium">{selectedRow[3]}  </h2>
                                         </div>
                                         <div className="flex flex-col">
                                             <h2 class=" text-lg font-medium">CPC</h2>
-                                            <h2 class=" text-lg font-medium">$12  </h2>
+                                            <h2 class=" text-lg font-medium">{selectedRow[4]}  </h2>
                                         </div>
                                     </div>
                                 </div>
@@ -368,58 +488,8 @@ export default function Col() {
                                 {/* )}) } */}
                             </thead>
                             <tbody className="divide-y divide-gray-200">
-                                <tr>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
-                                    >
-                                        {p.columnNames[0]}
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
-                                    >
-                                        {p.columnNames[1]}
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-xs font-bold text-left text-gray-500 uppercase "
-                                    >
-                                        {p.columnNames[2]}
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-xs font-bold text-right text-gray-500 uppercase "
-                                    >
-                                        {p.columnNames[3]}
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-xs font-bold text-right text-gray-500 uppercase "
-                                    >
-                                        {p.columnNames[4]}
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-xs font-bold text-right text-gray-500 uppercase "
-                                    >
-                                        {p.columnNames[5]}
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-xs font-bold text-right text-gray-500 uppercase "
-                                    >
-                                        {p.columnNames[6]}
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-xs font-bold text-right text-gray-500 uppercase "
-                                    >
-                                        {p.columnNames[7]}
-                                    </th>
-                                </tr>
 
-                                <tr>
+                                <tr className="text-[10px]">
 
 
                                     {state === 'broadmatch' && p1.map((item) => {
@@ -432,7 +502,7 @@ export default function Col() {
                                                 </td>
                                                 {item.map((item1, index) => {
                                                     return (
-                                                        <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap" key={index}>
+                                                        <td className="px-6 py-4  text-gray-800 whitespace-nowrap" key={index}>
                                                             {item1}
 
                                                         </td>
@@ -454,7 +524,7 @@ export default function Col() {
                                                 </td>
                                                 {item.map((item1, index) => {
                                                     return (
-                                                        <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap" key={index}>
+                                                        <td className="px-6 py-4   text-gray-800 whitespace-nowrap" key={index}>
                                                             {item1}
 
                                                         </td>
@@ -473,7 +543,7 @@ export default function Col() {
                                                 </td>
                                                 {item.map((item1, index) => {
                                                     return (
-                                                        <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap" key={index}>
+                                                        <td className="px-6 py-4  text-gray-800 whitespace-nowrap" key={index}>
                                                             {item1}
 
                                                         </td>
